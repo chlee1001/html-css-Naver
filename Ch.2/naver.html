@@ -26,15 +26,20 @@
              inline-bloc전부 다 ㅏ지
             inline은 컨탠k은 inline에 빈공간을 지정해줄 수 있음-->
             <div id="header-search">
-                <h1>
-                    <a href="https://www.naver.com">네이버</a>
-                </h1>
-                <h2>검색창</h2>
+                <a href="https://www.naver.com">
+                    <h1>
+                        <span>네이버</span>
+                    </h1>
+                </a>
+                <h2 class="blind">검색창</h2>
                 <!-- 스크린리더전용 -->
                 <fieldset>
-                    <legend>검색</legend>
+                    <legend class="blind ">검색</legend>
                     <input />
-                    <button>검색</button>
+                    <button>
+                        <span class="blind">검색</span>
+                        <span id="search-image"></span>
+                    </button>
                 </fieldset>
             </div>
             <div class="section_navbar">
