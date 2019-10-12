@@ -3,20 +3,53 @@
 *{ /* *는 모든 태그를 의미 */
     box-sizing: border-box;
 }
-#header-center {
+
+/* #header-center h1 { 
+ 자손 선택자
+} */
+
+.blind {
+    position: absolute;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    margin: -1px;
+    width: 1px;
+    height: 1px;
+}
+
+#fixed {
+    position: fixed;
+    /* fixed도 자신의 containing block을 찾아야하는데 viewport임.. */
+    top: 50px;
+    right: 50px;
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    border:1px solid black;
+    border-radius: 50px;
+
+}
+
+body { /* body에는 기본적으로 브라우저가 마진값을 준다.. 그래서 0으로 셋팅 */
+    margin: 0; 
+    padding: 0;
+}
+.center-align { /* 여러번 사용하기 때문에 클래스로... */
 margin: 0 auto;
 width: 1080px
 }
 
 #header-search > a> h1 { /* 자식 */
-    width: 198px;
-    height: 48px;
+    width: 200px;
+    height: 51px;
     display: inline-block;
     background-image: url(./sp_search.png);
-    background-position: -4px -10px;
+    /* background-position: -4px -8px; */
     text-indent: 101%;
     overflow: hidden;
-
+    position: relative;
+    top: -5px;
+    right: -2px;
 }
 
 #header-search > a {
@@ -32,13 +65,18 @@ width: 1080px
     height: 49px;
     display: inline-block;
      /* box-sizing: border-box; border-box는 content랑 padding을 합친 width */
-     vertical-align: middle;
+    vertical-align: middle;
+    position: relative;
 }
 
 #header-search fieldset input {
     border: none;
     padding: 0;
     outline: none;
+    vertical-align: top;
+    width: 405px;
+    height: 23px;
+    /* input은 기본적으로 inline-block --> width & height 지정 가능 */
 }
 #header-search fieldset button {
     width:49px;
@@ -46,9 +84,13 @@ width: 1080px
     border:none;
     padding: 0;
     background: #03cf5d;
-
-    
+    position: absolute;
+    /* --> absolute는 부모..조상태그의 position을 따르는데 static은 제외... static일 경우 부모로 계속 거슬러 올라감... */
+    /* 결국 absolute는 자신의 containig block을 기반으로 위치를 잡음 */
+    right: -2px;
+    top: -2px;
 }
+
 #search-image {
     background-image: url(./sp_search.png);
     background-position: -3px -59px;
@@ -58,18 +100,121 @@ width: 1080px
     display: inline-block;
     /*span은 기본적으로 display: inline인데 inline은 가로 세로 고정이여서 바꿀 수 없기 때문에 inline-block을 사용한다.*/
     margin: 14px;
+    /* 세로 가운데 정렬에 아래와 같은 방법이 있다고 함....
+    position: relative;
+    top: 50%;
+    left: 50%
+    transform: translateY(-50% -50%);
+    */
 }
 
-/* #header-center h1 { 
- 자손 선택자
-} */
-
-.blind {
-    position: absolute;
-    overflow: hidden;
-    clip: rect(0 0 0 0);
-    margin: -1px;
-    width: 1px;
-    height: 1px;
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
+
+nav li {
+    display: inline-block;
+}
+
+nav li span:first-child {
+    background-image: url(./sp_nav.png);
+    background-repeat: no-repeat;
+    display: inline-block;
+    /* span 태그이기 때문에 inline-block을 꼭 하자 */
+}
+/* 아래와 같은 방법으로 하면 간편하고 귀찮지만,,,, 나중에 유지보수할 때 뒤짐 */
+/* 그래서 차라리 클래스 지정해서 매칭해주는게... */
+ /* nav li:first-child span:first-child {
+    background-position: 0 -285px;
+    width:25px;
+    height:16px;
+}
+
+nav li:nth-child(2) span:first-child {
+    background-position: -279px -52px;
+    width:27px;
+    height:16px;
+}
+
+nav li:nth-child(3) span:first-child {
+    background-position: -100px -182px;
+    width:40px;
+    height:16px;
+}
+
+nav li:nth-child(4) span:first-child {
+    background-position: -101px -156px;
+    width:40px;
+    height:16px;
+}
+
+nav li:nth-child(5) span:first-child {
+    background-position: -279px -156px;
+    width:26px;
+    height:16px;
+}
+
+nav li:nth-child(6) span:first-child {
+    background-position: -70px -285px;
+    width:25px;
+    height:16px;
+}
+
+nav li:last-child span:last-child {
+    margin-top: -1px;
+    width: 32px;
+    height: 16px;
+    background-position: -125px -130px;
+}  */
+
+.li_item {
+    padding-left: 14px;
+}
+
+.li_item:first-child {
+    padding-left: 0;
+}
+
+.nav_mail .li_icon {
+    background-position: 0 -285px;
+    width:25px;
+    height:16px;
+}
+.nav_cafe .li_icon {
+    background-position: -279px -52px;
+    width:27px;
+    height:16px;
+}
+
+.nav_blog .li_icon {
+    background-position: -100px -182px;
+    width:40px;
+    height:16px;
+}
+
+.nav_kin .li_icon {
+    background-position: -101px -156px;
+    width:40px;
+    height:16px;
+}
+.nav_shopping .li_icon {
+    background-position: -279px -156px;
+    width:26px;
+    height:16px;
+}
+.nav_checkout .li_icon {
+    background-position: -70px -285px;
+    width:25px;
+    height:16px;
+}
+
+.nav_tv .li_icon {
+    margin-top: -1px;
+    width: 32px;
+    height: 16px;
+    background-position: -125px -130px;
+}
+
 
