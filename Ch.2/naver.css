@@ -8,13 +8,11 @@
  자손 선택자
 } */
 
-.blind {
-    position: absolute;
-    overflow: hidden;
-    clip: rect(0 0 0 0);
-    margin: -1px;
-    width: 1px;
-    height: 1px;
+
+html, body { /* body에는 기본적으로 브라우저가 마진값을 준다.. 그래서 0으로 셋팅 */
+    margin: 0; 
+    padding: 0;
+    font-family: Dotum,'돋움',Helvetica,"Apple SD Gothic Neo",sans-serif;
 }
 
 #fixed {
@@ -30,35 +28,75 @@
 
 }
 
-body { /* body에는 기본적으로 브라우저가 마진값을 준다.. 그래서 0으로 셋팅 */
-    margin: 0; 
-    padding: 0;
-}
-.center-align { /* 여러번 사용하기 때문에 클래스로... */
-margin: 0 auto;
-width: 1080px
+.blind {
+    position: absolute;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    margin: -1px;
+    width: 1px;
+    height: 1px;
 }
 
-#header-search > a> h1 { /* 자식 */
-    width: 200px;
-    height: 51px;
+.relative {
+    position: relative;
+}
+
+
+.center-align { /* 여러번 사용하기 때문에 클래스로... */
+    margin: 0 auto;
+    width: 1080px;
+}
+
+header {
+    height:170px;
+}
+
+#header-top {
+    float:right;
+    margin-top: 8px;
+}
+
+#header-top span {
+    color: #888; /* 원래 #888888인데 두글자씩 같으면 88>8 88>8 88>8로 줄일 수 있음  */
+    letter-spacing: -1px; /* 글자 사이의 간격... */
+    font-size: 11px; /* 폰트 크기 */
+    line-height: 22px; /* 폰트는 커져도 글자 높이는 고정시켜주기 */
+}
+
+#header-search {
+    clear:both;
+    padding-top:12px;
+}
+
+#header-search a {
+    text-decoration: none;
+}
+
+#header-search h1 { /* 자식 */
+    width: 198px;
+    height: 48px;
     display: inline-block;
-    background-image: url(./sp_search.png);
-    /* background-position: -4px -8px; */
-    text-indent: 101%;
-    overflow: hidden;
+    /*background-image: url(./sp_search.png);*/
+    /*background-position: -4px -10px;*/
+    /*background-repeat: no-repeat;*/
+    background: url(./sp_search.png) -4px -4px no-repeat;
+    vertical-align: middle;
     position: relative;
     top: -5px;
-    right: -2px;
+    left: 1px;
 }
 
-#header-search > a {
-  text-decoration: none;
-  vertical-align: middle;
+#header-search h1 span {
+    display: none;
 }
+
+#header-search h2 {
+    display: none;
+}
+
 
 #header-search fieldset{
-    margin-left: 20px;
+    margin-left: 18px;
     padding: 12px 0px 12px 10px; /*위 오른쪽 아래 왼쪽 */
     border: 2px solid #03cf5d;
     width: 521px;
@@ -74,7 +112,7 @@ width: 1080px
     padding: 0;
     outline: none;
     vertical-align: top;
-    width: 405px;
+    width: 395px;
     height: 23px;
     /* input은 기본적으로 inline-block --> width & height 지정 가능 */
 }
@@ -91,9 +129,31 @@ width: 1080px
     top: -2px;
 }
 
+#search-keyboard {
+    background-image: url(https://s.pstatic.net/static/www/img/uit/2019/sp_search.svg);
+    background-repeat: no-repeat;
+    background-position: -33px -60px;
+    width: 19px;
+    height: 11px;
+    display: inline-block;
+    margin: 0 6px;
+    vertical-align: middle;
+}
+
+#search-history {
+    background-image: url(https://s.pstatic.net/static/www/img/uit/2019/sp_search.svg);
+    background-repeat: no-repeat;
+    background-position: -87px -60px;
+    width: 9px;
+    height: 4px;
+    display: inline-block;
+    margin: 0 6px;
+    vertical-align: middle;
+}
+
 #search-image {
     background-image: url(./sp_search.png);
-    background-position: -3px -59px;
+    background-position: -3px -60px;
     background-repeat: no-repeat;
     width:21px;
     height:21px;
@@ -108,10 +168,18 @@ width: 1080px
     */
 }
 
+nav {
+    height: 46px;
+    border-top: 1px solid #f1f3f6;
+    background: #fff;
+    border-bottom: 1px solid #f1f3f6;
+}
+
 nav ul {
-    list-style: none;
-    padding: 0;
+    display: inline-block;
     margin: 0;
+    padding: 16px 0 0 4px;
+    list-style: none;
 }
 
 nav li {
@@ -126,95 +194,126 @@ nav li span:first-child {
 }
 /* 아래와 같은 방법으로 하면 간편하고 귀찮지만,,,, 나중에 유지보수할 때 뒤짐 */
 /* 그래서 차라리 클래스 지정해서 매칭해주는게... */
- /* nav li:first-child span:first-child {
+
+nav li:first-child span:first-child {
+    width: 25px;
     background-position: 0 -285px;
-    width:25px;
-    height:16px;
+    margin-left: 0;
+}
+
+nav li span:first-child {
+    height: 16px;
+    display: inline-block;
+    background-image: url(https://s.pstatic.net/static/www/img/uit/2019/sp_nav.png);
+    background-repeat: no-repeat;
+    margin-left: 10px;
 }
 
 nav li:nth-child(2) span:first-child {
+    width: 27px;
     background-position: -279px -52px;
-    width:27px;
-    height:16px;
 }
 
 nav li:nth-child(3) span:first-child {
+    width: 40px;
     background-position: -100px -182px;
-    width:40px;
-    height:16px;
 }
 
 nav li:nth-child(4) span:first-child {
+    width: 40px;
     background-position: -101px -156px;
-    width:40px;
-    height:16px;
 }
 
 nav li:nth-child(5) span:first-child {
+    width: 26px;
     background-position: -279px -156px;
-    width:26px;
-    height:16px;
 }
 
 nav li:nth-child(6) span:first-child {
+    width: 25px;
     background-position: -70px -285px;
-    width:25px;
-    height:16px;
 }
 
-nav li:last-child span:last-child {
-    margin-top: -1px;
-    width: 32px;
-    height: 16px;
-    background-position: -125px -130px;
-}  */
-
-.li_item {
-    padding-left: 14px;
-}
-
-.li_item:first-child {
-    padding-left: 0;
-}
-
-.nav_mail .li_icon {
-    background-position: 0 -285px;
-    width:25px;
-    height:16px;
-}
-.nav_cafe .li_icon {
-    background-position: -279px -52px;
-    width:27px;
-    height:16px;
-}
-
-.nav_blog .li_icon {
-    background-position: -100px -182px;
-    width:40px;
-    height:16px;
-}
-
-.nav_kin .li_icon {
-    background-position: -101px -156px;
-    width:40px;
-    height:16px;
-}
-.nav_shopping .li_icon {
-    background-position: -279px -156px;
-    width:26px;
-    height:16px;
-}
-.nav_checkout .li_icon {
-    background-position: -70px -285px;
-    width:25px;
-    height:16px;
-}
-
-.nav_tv .li_icon {
-    margin-top: -1px;
-    width: 32px;
-    height: 16px;
+nav li:nth-child(7) span:first-child {
+    width: 35px;
     background-position: -125px -130px;
 }
 
+nav li:nth-child(8) span:first-child {
+    width: 26px;
+    background-position: -279px -208px;
+}
 
+nav li:nth-child(9) span:first-child {
+    width: 26px;
+    background-position: -128px -104px;
+}
+
+nav li:nth-child(10) span:first-child {
+    width: 26px;
+    background-position: -36px -259px;
+}
+
+nav li:nth-child(11) span:first-child {
+    width: 39px;
+    background-position: -151px -156px;
+}
+
+nav li:nth-child(12) span:first-child {
+    width: 26px;
+    background-position: -279px -130px;
+}
+
+nav li:nth-child(13) span:first-child {
+    width: 26px;
+    background-position: -234px -233px;
+}
+
+nav li:nth-child(14) span:first-child {
+    width: 26px;
+    background-position: -72px -259px;
+}
+
+nav li:nth-child(15) span:first-child {
+    width: 13px;
+    background-position: -140px -78px;
+}
+
+nav li:nth-child(16) span:first-child {
+    width: 26px;
+    background-position: -279px 0;
+}
+
+nav li.more:first-child span:first-child {
+    width: 55px;
+    background-position: 0 -104px;
+}
+
+.nav-divider {
+    display: inline-block;
+    margin: 18px 16px 0;
+    width: 1px;
+    height: 14px;
+    background: #ebeef3;
+}
+
+#search-ranking {
+    position: absolute;
+    top: 16px;
+    right: 100px;
+}
+
+#rank-number {
+    margin-top: -9px;
+    color: #00ab33;
+    font-size: 16px;
+}
+
+#rank-title {
+    letter-spacing: -1px;
+    font-size: 14px;
+}
+
+main {
+    background-color: #f2f4f7;
+}
